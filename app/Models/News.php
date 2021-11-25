@@ -15,4 +15,12 @@ class News extends Model
      * @var string
      */
     protected $table = 'news';
+
+    /**
+    * Get the source that owns the news.
+    */
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
+    }
 }
