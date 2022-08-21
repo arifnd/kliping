@@ -9,6 +9,13 @@ class News extends Model
 {
     use HasFactory;
 
+
+    protected $dates = [
+        'date',
+        'crated_at',
+        'updated_at',
+    ];
+
     /**
     * The attributes that aren't mass assignable.
     *
