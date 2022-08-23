@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Events\NewsCreate;
 use App\Models\News;
 use App\Models\Source;
 use Carbon\Carbon;
@@ -48,7 +49,7 @@ class FeedUpdate extends Command
             $result = $feedIo->read($feed->url);
 
             foreach ($result->getFeed() as $item) {
-                News::updateOrCreate([
+                $news = News::updateOrCreate([
                     'source_id' => $feed->id,
                     'title' => $item->getTitle(),
                 ], [
@@ -56,6 +57,9 @@ class FeedUpdate extends Command
                     'url' => $item->getLink(),
                     'date' => $item->getLastModified()->format('Y-m-d H:i:s')
                 ]);
+
+                if ($news->wasRecentlyCreated)
+                    event(new NewsCreate($news));
             }
 
             $feed->next_update = $result->getNextUpdate()->format('Y-m-d H:i:s');
