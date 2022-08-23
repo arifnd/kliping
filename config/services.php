@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'telegram' => [
+        'userid' => env('TELEGRAM_USER_ID'),
+    ],
+
 ];
