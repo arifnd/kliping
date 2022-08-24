@@ -51,7 +51,7 @@ class FeedUpdate extends Command
             foreach ($result->getFeed() as $item) {
                 $news = News::updateOrCreate([
                     'source_id' => $feed->id,
-                    'title' => $item->getTitle(),
+                    'title' => Str::squish($item->getTitle()),
                 ], [
                     'content' => Str::squish(strip_tags($item->getContent())),
                     'url' => $item->getLink(),
