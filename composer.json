@@ -8,6 +8,7 @@
         "php": "^8.0.2",
         "debril/feed-io": "^5.0",
         "guzzlehttp/guzzle": "^7.2",
+        "imangazaliev/didom": "^2.0",
         "irazasyed/telegram-bot-sdk": "^3.0",
         "jeroennoten/laravel-adminlte": "^3.8",
         "laravel/framework": "^9.19",
