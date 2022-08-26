@@ -6,8 +6,8 @@ use App\Events\NewsCreate;
 use App\Models\News;
 use App\Models\Source;
 use Carbon\Carbon;
-use FeedIo\FeedIo;
 use FeedIo\Adapter\Guzzle\Client;
+use FeedIo\FeedIo;
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -55,11 +55,12 @@ class FeedUpdate extends Command
                 ], [
                     'content' => Str::squish(strip_tags($item->getContent())),
                     'url' => $item->getLink(),
-                    'date' => $item->getLastModified()->format('Y-m-d H:i:s')
+                    'date' => $item->getLastModified()->format('Y-m-d H:i:s'),
                 ]);
 
-                if ($news->wasRecentlyCreated)
+                if ($news->wasRecentlyCreated) {
                     event(new NewsCreate($news));
+                }
             }
 
             $feed->next_update = $result->getNextUpdate()->format('Y-m-d H:i:s');

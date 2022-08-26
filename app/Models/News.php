@@ -9,7 +9,6 @@ class News extends Model
 {
     use HasFactory;
 
-
     protected $dates = [
         'date',
         'crated_at',
@@ -17,10 +16,10 @@ class News extends Model
     ];
 
     /**
-    * The attributes that aren't mass assignable.
-    *
-    * @var array
-    */
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
     protected $guarded = [
         'id',
         'created_at',

@@ -22,7 +22,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         NewsCreate::class => [
             SendNewsTelegram::class,
-        ]
+        ],
     ];
 
     /**

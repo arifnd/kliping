@@ -6,7 +6,6 @@ use App\Http\Requests\PostSourceRequest;
 use App\Models\Source;
 use App\Models\Type;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class SourceController extends Controller
 {
@@ -61,7 +60,14 @@ class SourceController extends Controller
      */
     public function show(Source $source)
     {
-        //
+        $source->type_id = $request->type;
+        $source->name = $request->name;
+        $source->url = $request->url;
+        $source->next_update = $request->next_update;
+        $source->active = $request->active;
+        $source->save();
+
+        return redirect()->route('sources.index');
     }
 
     /**
@@ -72,17 +78,20 @@ class SourceController extends Controller
      */
     public function edit(Source $source)
     {
-        //
+        return view('sources.edit', [
+            'source' => $source,
+            'types' => Type::get(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PostSourceRequest  $request
      * @param  \App\Models\Source  $source
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Source $source)
+    public function update(PostSourceRequest $request, Source $source)
     {
         //
     }
