@@ -1,3 +1,5 @@
+/Modules/*
+!/Modules/.gitkeep
 /node_modules
 /public/build
 /public/hot
@@ -10,6 +12,7 @@
 Homestead.json
 Homestead.yaml
 auth.json
+modules_statuses.json
 npm-debug.log
 yarn-error.log
 /.idea
